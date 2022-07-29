@@ -247,7 +247,7 @@ def baidu_get_image_url_using_api(keywords, max_number=10000, face_only=False,
     }
 
     res = requests.get(init_url, proxies=proxies, headers=headers)
-    init_json = json.loads(res.text.replace(r"\'", ""), encoding='utf-8', strict=False)
+    init_json = json.loads(res.text.replace(r"\'", ""), strict=False)
     total_num = init_json['listNum']
 
     target_num = min(max_number, total_num)
@@ -274,7 +274,7 @@ def baidu_get_image_url_using_api(keywords, max_number=10000, face_only=False,
                         print(e)
                         return image_urls
             response.encoding = 'utf-8'
-            res_json = json.loads(response.text.replace(r"\'", ""), encoding='utf-8', strict=False)
+            res_json = json.loads(response.text.replace(r"\'", ""), strict=False)
             for data in res_json['data']:
                 if 'objURL' in data.keys():
                     image_urls.append(decode_url(data['objURL']))
